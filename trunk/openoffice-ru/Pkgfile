@@ -1,0 +1,37 @@
+# Description: A full featured cross platform office suite (binary)
+# URL:         http://www.openoffice.org
+# Maintainer:  Han Boetes <han@mijncomputer.nl>
+# Packager:    Simone Rota <sip@varlock.com>
+# Depends on:  x11
+
+name=openoffice-ru
+version=2.4.1
+release=1
+source="
+    ftp://ftp.chg.ru/pub/OpenOffice-RU/2.4.1/ru/OOo_2.4.1_LinuxIntel_install_ru_infra.tar.gz
+    openoffice_desktop.tar.gz
+"
+
+build()
+{
+    # Make Buddy Lindsey happy.
+    mv usr $PKG
+
+    cd */RPMS
+    rpm2targz openoffice.org-*.i586.rpm
+    for i in *.tar.gz; do
+	tar xzf $i -C $PKG
+    done
+    install -d $PKG/usr/lib/
+    mv $PKG/opt/openoffice.org* $PKG/usr/lib/$name
+    rm -f $PKG/usr/lib/$name/[A-Z]*
+    rm -rf $PKG/usr/lib/openoffice/share/template/en-RU/wizard/letter/
+    # Make Jay Dolan happy.
+    install -d $PKG/usr/bin/
+    for i in sbase scalc sdraw simpress smath soffice spadmin swriter; do
+	ln -s /usr/lib/$name/program/$i $PKG/usr/bin/$i
+    done
+    chown -R root:root $PKG
+    find $PKG -name '*README*' -delete
+    find $PKG -depth -type d -empty -print0 |xargs -0 rmdir -p ||:
+}

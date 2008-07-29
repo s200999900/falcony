@@ -1,0 +1,16 @@
+# Description: library of document-centric objects and utilities building on top of GLib and Gtk+
+# URL: http://ftp.gnome.org/pub/gnome/sources/goffice
+# Maintainer: Antonio SJ Musumeci, bile at landofbile dot com
+# Depends on: gtk glib
+
+name=goffice
+version=0.6.4
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/goffice/${version%.*}/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+        ./configure --prefix=/usr --disable-nls
+        make
+        make DESTDIR=$PKG install
+}

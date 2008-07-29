@@ -1,0 +1,25 @@
+# Description: krusader is a filemanager like Norton Commander
+# URL:         http://krusader.sourceforge.net
+# Maintainer:
+# Packager:    Torsten Henschel <thenschel at henschelsoft dot de>
+# Depends on:  kdebase
+
+name=krusader
+version=1.90.0
+release=1
+source=(http://dl.sourceforge.net/$name/$name-$version.tar.gz)
+
+build () {
+    cd $name-$version
+
+    export QTDIR=/usr
+    export KDEDIR=/usr
+
+    ./configure \
+	--prefix=/usr \
+	--disable-debug \
+
+    make
+    make DESTDIR=$PKG install
+
+}

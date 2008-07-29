@@ -1,0 +1,90 @@
+# Description: Atlantida is free Multilingual Dictionary
+# URL: http://atla.revdanica.com/ 
+# Maintainer: Maxim Falcony, falcony at crux dot nu
+# Depends on: jre 
+# Nice to have: 
+
+name=atlantida-multi
+version=031
+release=1
+source=(http://downloads.sourceforge.net/atla/atla_$version.jar \ 
+	http://downloads.sourceforge.net/xdxf/comn_dictd03_magus.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_mueller7.tar.bz2 \	
+	http://downloads.sourceforge.net/xdxf/comn_sdict_axm03_rus_eng_short.tar.bz2 \
+	http://prdownloads.sourceforge.net/atla/sounds.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_sdict05_rus_eng_full.tar.bz2 \ 
+	http://downloads.sourceforge.net/xdxf/comn_sdict_axm05_American_English.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dictd03_web1913.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dictd03_ushakov.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_sdict05_brokg.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_gcide.tar.bz2  \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_engcom.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_foldoc.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_idioms.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dictd03_latrus.tar.bz2 \
+        http://downloads.sourceforge.net/xdxf/comn_dictd03_mech.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict_axm03_spa_rus_sadikov.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_eng_eng_main.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_eng_eng_nw.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_ger_eng.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_german_rus.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_german_rus2.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_french-english.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dls03_mwc.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dictd04_beslov.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_idioms_eng_rus.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_ita_rus_zorko.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_ru_synonym_sh.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict05_spa_rus_sadikov.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict_axm05_eng_rus_comp.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_sdict02_italian-english.tar.bz2 \ 
+
+        http://downloads.sourceforge.net/xdxf/comn_dictd04_deutsch_de-ru.tar.bz2 \
+	http://downloads.sourceforge.net/xdxf/comn_dictd04_deutsch_ru-de.tar.bz2 \
+        atla ) 
+
+build() {
+        mkdir $PKG/usr
+        mkdir $PKG/usr/bin/
+        cp -p atla $PKG/usr/bin/
+        mkdir -p $PKG/usr/share
+        mkdir -p $PKG/usr/share/atla 
+        cp atla_$version.jar $PKG/usr/share/atla/ 
+        cp -R magus $PKG/usr/share/atla/
+        cp -R mueller7 $PKG/usr/share/atla/
+        cp -R rus_eng_short $PKG/usr/share/atla/
+        cp -R web1913 $PKG/usr/share/atla/
+        cp -R rus_eng_full $PKG/usr/share/atla/
+        cp -R American_English $PKG/usr/share/atla/
+        cp -R gcide $PKG/usr/share/atla/
+        cp -R ushakov $PKG/usr/share/atla/
+        cp -R brokg $PKG/usr/share/atla/
+        cp -R sounds $PKG/usr/share/atla/
+
+         cp -R engcom $PKG/usr/share/atla/
+         cp -R foldoc  $PKG/usr/share/atla/
+         cp -R idioms $PKG/usr/share/atla/
+         cp -R latrus $PKG/usr/share/atla/
+         cp -R french-english $PKG/usr/share/atla/
+         cp -R mwc $PKG/usr/share/atla/
+         cp -R mech $PKG/usr/share/atla/
+         cp -R spa_rus_sadikov $PKG/usr/share/atla/
+         cp -R eng_eng_main $PKG/usr/share/atla/
+         cp -R eng_eng_nw $PKG/usr/share/atla/
+         cp -R ger_eng $PKG/usr/share/atla/
+         cp -R german_rus $PKG/usr/share/atla/
+         cp -R german_rus2 $PKG/usr/share/atla/
+         cp -R french-english $PKG/usr/share/atla/
+         cp -R beslov $PKG/usr/share/atla/
+         cp -R ita_rus_zorko $PKG/usr/share/atla/
+         cp -R ru_synonym_sh $PKG/usr/share/atla/
+         cp -R spa_rus_sadikov $PKG/usr/share/atla/
+        cp -R eng_rus_comp $PKG/usr/share/atla/
+        cp -R italian-english $PKG/usr/share/atla/
+        cp -R deutsch_de-ru $PKG/usr/share/atla/
+        cp -R deutsch_ru-de $PKG/usr/share/atla/
+
+        chown -R :users $PKG/usr/share/atla/
+        chmod -R 755 $PKG/usr/share/atla/ 
+        
+}
