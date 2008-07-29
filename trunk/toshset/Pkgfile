@@ -1,0 +1,17 @@
+# Description: Toshiba laptops utilites
+# URL: http://www.schwieters.org/toshset/
+# Maintainer: Hannes Mayer, kontak at ecarux dot de
+# Depends on: openssl
+
+name=toshset
+version=1.73
+release=1
+source=(http://www.schwieters.org/toshset/toshset.tgz)
+
+build () {
+	cd $name-$version
+        ./configure  --prefix=/usr --sysconfdir=/etc --mandir=/usr/man
+	make
+	make prefix=$PKG install
+	chown -R root:root $PKG
+}

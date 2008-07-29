@@ -1,0 +1,24 @@
+# Description: rinetd daemon to forward TCP ports
+# URL: http://www.boutell.com/rinetd/http/rinetd.tar.gz
+# Maintainer: Maxim Sokolsky, at maxfalcon at yandex dot ru
+# Depends on: glibc
+
+name=rinetd
+version=0.1
+release=1
+source=(http://www.boutell.com/rinetd/http/rinetd.tar.gz \
+        rinetd.conf)
+
+build () {
+	cd $name
+        mkdir -p $PKG/usr
+        mkdir -p $PKG/usr/sbin
+        mkdir -p $PKG/usr/man
+        mkdir -p $PKG/usr/man/man8
+        mkdir -p $PKG/etc
+	make
+        install -m 700 rinetd $PKG/usr/sbin
+        install -m 644 rinetd.8 $PKG/usr/man/man8
+        install -m 644 $SRC/rinetd.conf $PKG/etc
+	chown -R root:root $PKG
+}
