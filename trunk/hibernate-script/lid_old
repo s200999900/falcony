@@ -1,2 +1,0 @@
-event=button[ /]lid.*[13579bdf]$
-action=/etc/acpi/lidsuspend.sh
