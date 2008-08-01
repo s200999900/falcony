@@ -1,0 +1,20 @@
+# Description: Syncing of addressbook Microsoft PocketPC and Mozilla  
+# URL: http://www.finchsync.com
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: synce
+
+name=finchsync
+version=1
+release=1
+source=(http://www.finchsync.com/binaries/finchsync.cab \
+        http://www.finchsync.com/binaries/finchsync.jar)
+
+build () {
+        echo "Connect your Pocket PC"
+        sleep 15 
+	synce-install-cab $SRC/finchsync.cab 
+        mkdir -p $PKG/root/.sync
+        cp finchsync.jar $PKG/root/.sync/
+	chown -R root:root $PKG
+        echo "Start now java -jar /root/.sync/finchsync.jar"
+}

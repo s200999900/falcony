@@ -1,0 +1,17 @@
+# Description: librapi2 library for synce
+# URL: http://downloads.sourceforge.net/synce/librapi2-0.11.tar.gz
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: glibc
+
+name=librapi2
+version=0.11
+release=1
+source=(http://downloads.sourceforge.net/synce/$name-$version.tar.gz)
+
+build () {
+	cd $name-$version
+        ./configure  --prefix=/usr --sysconfdir=/etc --mandir=/usr/man
+	make
+	make prefix=$PKG/usr install
+	chown -R root:root $PKG
+}
