@@ -1,0 +1,20 @@
+# Description: GNOME's spreadsheet program
+# URL: http://www.gnome.org/projects/gnumeric/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: gtk libgnomeprint libgsf libglade intltool libxml2 libart_lgpl goffice
+
+name=gnumeric
+version=1.8.3
+release=1
+source=(http://ftp.gnome.org/pub/GNOME/sources/$name/${version%.*}/$name-$version.tar.bz2)
+
+build() 
+{
+    cd $name-$version
+    ./configure \
+        --prefix=/usr \
+	--with-perl \
+	--with-python  
+    make
+    make DESTDIR=$PKG install
+}

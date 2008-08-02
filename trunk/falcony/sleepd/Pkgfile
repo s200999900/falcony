@@ -1,0 +1,19 @@
+# Description: sleepd is a daemon to to put a laptop to sleep if it is not 
+# being used or if the battery is low.
+# URL: http://kitenet.net/~joey/code/sleepd/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: 
+
+name=sleepd
+version=1.10
+release=1
+source=()
+
+build () {
+        cd $SRC
+        git clone git://git.kitenet.net/sleepd
+	cd $name
+        make
+	make PREFIX=$PKG install
+	chown -R root:root $PKG
+}

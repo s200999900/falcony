@@ -1,0 +1,15 @@
+1.	Make sure you have support for laptop mode in your kernel.
+	If you're running 2.6.6 or later you should be fine.
+	The laptop mode sysctl is located in /proc/sys/vm/laptop_mode
+
+2.	Please run post-install after installing this package since
+	my acpid package includes some config files that will interfear 
+	with laptop-mode-tools otherwise.
+	Following files will be removed.
+	/etc/acpi/battery.sh
+	/etc/acpi/events/battery.conf
+	Those are all included in my own acpid package. If you 
+	installed acpid from /unmaintained you should look
+	at its footprint and see for yourself.
+
+	Mattias <mattias@hedenskog.se>
