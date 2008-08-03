@@ -1,0 +1,46 @@
+1. If libtiff library is not installed then install it. Install ﻿tesseract package.
+
+2. After package installation login as ordinary user and run script ocr:
+
+ocr rus
+
+It will create your home directory next directories:
+~/ocr
+~/ocr/deu - German lang. scanned images
+~/ocr/eng - Endlish lang. scanned images
+~/ocr/fra - Franch lang. scanned images
+~/ocr/ita - Italian lang. scanned images
+~/ocr/nld - Nederland lang. scanned images
+~/ocr/rus - Russian lang. scanned images
+~/ocr/spa - Spanian lang. scanned images
+~/ocr/txt - Output direcory for OCRed text files
+~/ocr/vie - Vietnamian lang. scanned images
+ 
+3. Prepare images - Scan images it with 400 DPI in 256 greyscale mode, 
+open each in GIMP. Rotate them vertically, cut on blocks and frames
+save each in separate file. Then add Brightness/Contrast to clean of 
+dirty dots and old paper greyness for each  block. 
+Save all images as indexed 1-bit Black&White mode as tif and bmp. 
+Important! Tesseract understand  only 1-bit Black&White mode images.
+Name images in digital order, for example 1.tif, 2.tif, 3.tif and cetera.
+
+4. Place all images to directory with appropriate lang. For example if you have 
+russian lang. images then copy them to ~/ocr/rus directory, and if you have 
+english lang. images then copy them to ~/ocr/eng directory.
+
+5. Then run ocr script with parameter of lang. to OCR text.
+
+ocr lang
+
+For example, if you copy images to ~/ocr/rus directory then run 
+
+ocr rus
+
+And If if you have english lang. images in  ~/ocr/eng then run:
+
+ocr eng
+
+6. When OCR finished open in ~/ocr/txt/ text file text-packet-*.txt
+and check it by spellcheck programm. Delete all images.
+
+7. That's all!
