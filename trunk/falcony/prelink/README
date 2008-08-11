@@ -1,0 +1,16 @@
+To prelink all files after installation:
+# prelink -amfR
+(can take some time. use v for verbose output)
+
+After every new installation, you must update prelink.
+prelink the installed files by hand or run:
+# prelink -amR
+
+To unprelink all files, before you remove prelink:
+# prelink -au
+
+To speed up KDE with prelink, set 
+KDE_IS_PRELINKED=true
+Do this before you start KDE, maybe in /usr/bin/startkde
+
+

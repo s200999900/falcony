@@ -1,0 +1,27 @@
+# Description: This port installs the russian binary from mozilla.org with flash and plugger
+# URL:         http://www.mozilla.org/products/firefox/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on:  gtk libidl libstdc++-compat
+# Nice to have: plugger java firefox-flash-plugin
+
+name=firefox
+version=2.0.0.16
+release=1
+source=(http://releases.mozilla.org/pub/mozilla.org/firefox/releases/$version/linux-i686/ru/firefox-$version.tar.gz firefox_runscript)
+
+build()
+{
+    install -d      $PKG/usr/{lib,bin}
+    mv $SRC/firefox $PKG/usr/lib
+
+    # Add a symlink for plugger and java so it works out of the
+    # box, doesn't matter if you don't have the plugin installed.
+    ln -s /usr/lib/plugger/plugger.so \
+        $PKG/usr/lib/firefox/plugins/plugger.so
+
+    ln -s /usr/lib/jre/plugin/i386/ns7/libjavaplugin_oji.so \
+        $PKG/usr/lib/firefox/plugins/libjavaplugin_oji.so
+
+    sed -e 's|@prefix@|/usr/lib|' $SRC/firefox_runscript > $PKG/usr/bin/firefox
+    chmod 755 $PKG/usr/bin/firefox
+}

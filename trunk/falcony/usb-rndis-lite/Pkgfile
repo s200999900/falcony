@@ -1,0 +1,18 @@
+# Description: usb-rndis-lite for synce
+# URL: http://downloads.sourceforge.net/synce/usb-rndis-lite-0.11.tar.gz
+# Packager: Falcony, falcony at users dot sourceforge dot net
+
+
+
+name=usb-rndis-lite
+version=0.11
+release=1
+source=(http://downloads.sourceforge.net/synce/$name-$version.tar.gz)
+
+build () {
+	cd $name-$version
+	make
+        ./clean.sh
+	make install
+	chown -R root:root $PKG
+}
