@@ -1,3 +1,0 @@
-#!/bin/sh
-cd /usr/share/atla/
-/usr/bin/java -Xmx500M -jar atla_031.jar
