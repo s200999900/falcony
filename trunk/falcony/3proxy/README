@@ -1,0 +1,9 @@
+# Very tiny README for tiny proxy 
+
+1. Read documentation at http://3proxy.ru/howtoe.asp;
+2. Check /etc/3proxy.cfg configuration file. Now activated HTTP,POP3 and SOCKS proxies;
+3. Add /usr/bin/3proxy.sh to startup scripts.
+
+And for HTTP proxies use it if number of users is < 70 users. 
+In case of much louding the Squid much is better. 
+

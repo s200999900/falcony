@@ -1,0 +1,2 @@
+#!/bin/sh
+/usr/sbin/hibernate -F /etc/hibernate/ram.conf
