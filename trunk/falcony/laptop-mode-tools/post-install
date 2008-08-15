@@ -1,3 +1,0 @@
-#!/bin/sh
-rm -f /etc/acpi/battery.sh
-rm -f /etc/acpi/events/battery.conf 
