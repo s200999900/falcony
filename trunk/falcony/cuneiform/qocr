@@ -1,0 +1,220 @@
+#!/bin/sh
+date=`date +%Y%m%d%m%s`
+shortdate=`echo ${date} | sed s/^...//`
+shortname=text-packet-${shortdate}.txt
+USERNAME=`whoami` ; T1="root"
+if [ "$T1" = "$USERNAME" ]; then 
+echo  'Please do not run this script as root' ; exit
+fi
+
+# Declaration of allowed symbol for user input scrubbing
+declare -r AllowedChars="engerfraruswespaitaengukrsrphrvpoldanpordutdiguzbkazengczerumhunbulslolavlitesttur"
+
+if [ ! -z "$2" ]; then
+echo "Use 1 argument only. Usage: qocr lang. List of supported qocr lang. is: eng ger fra rus swe spa ita ruseng ukr srp hrv pol dan por dut dig uzb kaz kazeng cze rum hun bul slo lav lit est tur." ; exit
+fi
+
+if [ ! -z "$1" ]
+then
+VAR_01=$1
+else
+echo "To start qocr you need to type language as argument. Usage: Usage: qocr lang. List of supported qocr lang. is: eng ger fra rus swe spa ita ruseng ukr srp hrv pol dan por dut dig uzb kaz kazeng cze rum hun bul slo lav lit est tur." ; exit
+fi
+
+echo ""
+if [ -e /home/"$USERNAME"/qocr  ]; then
+echo  " "
+else
+mkdir -p /home/$USERNAME/qocr
+echo  "Creating /home/"$USERNAME"/qocr directory"
+mkdir -p /home/$USERNAME/qocr/eng
+echo  "Creating /home/"$USERNAME"/qocr/eng directory for English language images"
+mkdir -p /home/$USERNAME/qocr/ger
+echo  "Creating /home/"$USERNAME"/qocr/ger directory for German language images" 
+mkdir -p /home/$USERNAME/qocr/fra
+echo  "Creating /home/"$USERNAME"/qocr/fra directory for Franch language images"
+mkdir -p /home/$USERNAME/qocr/rus
+echo  "Creating /home/"$USERNAME"/qocr/rus directory for Russian Language images"
+mkdir -p /home/$USERNAME/qocr/swe
+echo  "Creating /home/"$USERNAME"/qocr/swe directory for Swedian language images"
+mkdir -p /home/$USERNAME/qocr/spa
+echo  "Creating /home/"$USERNAME"/qocr/spa directory for Spanish language images" 
+mkdir -p /home/$USERNAME/qocr/ita
+echo  "Creating /home/"$USERNAME"/qocr/ita directory for Italian language images"
+mkdir -p /home/$USERNAME/qocr/ruseng
+echo  "Creating /home/"$USERNAME"/qocr/ruseng directory for Russian-English mixed Language images"
+mkdir -p /home/$USERNAME/qocr/ukr
+echo  "Creating /home/"$USERNAME"/qocr/ukr directory for Ukranian Language images"
+mkdir -p /home/$USERNAME/qocr/srp
+echo  "Creating /home/"$USERNAME"/qocr/srp directory for Srp Language images"
+mkdir -p /home/$USERNAME/qocr/pol
+echo  "Creating /home/"$USERNAME"/qocr/pol directory for Polish Language images"
+mkdir -p /home/$USERNAME/qocr/dan
+echo  "Creating /home/"$USERNAME"/qocr/dan directory for Dan Language images"
+mkdir -p /home/$USERNAME/qocr/por
+echo  "Creating /home/"$USERNAME"/qocr/por directory for Portugalian Language images"
+mkdir -p /home/$USERNAME/qocr/dut
+echo  "Creating /home/"$USERNAME"/qocr/dut directory for Dutch language images"
+mkdir -p /home/$USERNAME/qocr/dig
+echo  "Creating /home/"$USERNAME"/qocr/dig directory for Dig language images"
+mkdir -p /home/$USERNAME/qocr/uzb
+echo  "Creating /home/"$USERNAME"/qocr/uzb directory for Uzbeck language images"
+mkdir -p /home/$USERNAME/qocr/kaz
+echo  "Creating /home/"$USERNAME"/qocr/kaz directory for Kazah language images"
+mkdir -p /home/$USERNAME/qocr/kaz
+echo  "Creating /home/"$USERNAME"/qocr/kaz directory for Kazah-English mixed language images"
+mkdir -p /home/$USERNAME/qocr/cze
+echo  "Creating /home/"$USERNAME"/qocr/cze directory for Chezhian language images"
+mkdir -p /home/$USERNAME/qocr/rum
+echo  "Creating /home/"$USERNAME"/qocr/rum directory for Rumunian language images"
+mkdir -p /home/$USERNAME/qocr/hun
+echo  "Creating /home/"$USERNAME"/qocr/hun directory for Hungarian language images"
+mkdir -p /home/$USERNAME/qocr/bul
+echo  "Creating /home/"$USERNAME"/qocr/bul directory for Bulgarian language images"
+mkdir -p /home/$USERNAME/qocr/slo
+echo  "Creating /home/"$USERNAME"/qocr/slo directory for Slovakian language images"
+mkdir -p /home/$USERNAME/qocr/lav
+echo  "Creating /home/"$USERNAME"/qocr/lav directory for Latvian language images"
+mkdir -p /home/$USERNAME/qocr/lit
+echo  "Creating /home/"$USERNAME"/qocr/lit directory for Litvian language images"
+mkdir -p /home/$USERNAME/qocr/est
+echo  "Creating /home/"$USERNAME"/qocr/est directory for Estonian language images"
+mkdir -p /home/$USERNAME/qocr/tur
+echo  "Creating /home/"$USERNAME"/qocr/tur directory for Turkish language images"
+mkdir -p /home/$USERNAME/qocr/txt
+echo  "Creating /home/"$USERNAME"/qocr/txt directory for output text "
+
+echo '------------------------------------------------------------'
+echo  "Place your images to /home/"$USERNAME"/qocr/your_lang directory and then rerun this script" 
+exit
+fi
+
+# Checking user input&scrubbing
+ScrubbedCheck="${1//[^$AllowedChars]/}"
+if [ "$1" = "$ScrubbedCheck" ]; then
+echo  ''
+else
+echo ' '
+echo " Error. You entered wrong symbols. Allowed symbols are: "$AllowedChars""
+echo 'Run this script again and be more carefull during inputing.'
+exit
+fi
+
+VAR_01=$1
+
+f1()
+
+{
+
+echo ''
+echo '-----------------------------------------------------'
+echo "Begin OCR in /home/$USERNAME/qocr/"$VAR_01"/          "
+echo '-----------------------------------------------------'
+echo ''
+
+if [ "$VAR_01" = "rus" ]; then 
+echo  'Language of OCR is Russian'
+fi
+
+if [ "$VAR_01" = "eng" ]; then 
+echo  'Language of OCR is English'
+fi
+
+if [ "$VAR_01" = "fra" ]; then 
+echo  'Language of OCR is French'
+fi
+
+if [ "$VAR_01" = "ger" ]; then 
+echo  'Language of OCR is German'
+fi
+
+if [ "$VAR_01" = "spa" ]; then 
+echo  'Language of OCR is Spanish'
+fi
+
+if [ "$VAR_01" = "ita" ]; then 
+echo  'Language of OCR is Italian'
+fi
+
+if [ "$VAR_01" = "dut" ]; then 
+echo  'Language of OCR is Dutch'
+fi
+
+if [ "$VAR_01" = "swe" ]; then 
+echo  'Language of OCR is Swedian'
+fi
+
+if [ "$VAR_01" = "ruseng" ]; then 
+echo  'Language of OCR is Russian & English'
+fi
+
+if [ "$VAR_01" = "ukr" ]; then 
+echo  'Language of OCR is Ukrainian'
+fi
+
+if [ "$VAR_01" = "ruseng" ]; then 
+echo  'Language of OCR is Russian & English'
+fi
+
+if [ "$VAR_01" = "pol" ]; then 
+echo  'Language of OCR is Polish'
+fi
+
+if [ "$VAR_01" = "pol" ]; then 
+echo  'Language of OCR is Portugalian'
+fi
+
+if [ "$VAR_01" = "uzb" ]; then 
+echo  'Language of OCR is Uzbeck'
+fi
+
+if [ "$VAR_01" = "uzb" ]; then 
+echo  'Language of OCR is Uzbeck'
+fi
+
+if [ "$VAR_01" = "rum" ]; then 
+echo  'Language of OCR is Romanian'
+fi
+
+if [ "$VAR_01" = "kaz" ]; then 
+echo  'Language of OCR is Kazakhian'
+fi
+
+if [ "$VAR_01" = "razeng" ]; then 
+echo  'Language of OCR is Kazakhian & English'
+fi
+
+if [ "$VAR_01" = "tur" ]; then 
+echo  'Language of OCR is Turkish'
+fi
+
+
+echo '------------------------------------------------------------'
+echo ''
+
+cd /home/$USERNAME/qocr/$VAR_01
+ls -A1 > /tmp/filelist
+cd /usr/share/cuneiform/qocr
+
+if [ -e /usr/share/cuneiform/qocr/cuneiform-out.txt  ]; then
+rm /usr/share/cuneiform/qocr/cuneiform-out.txt
+fi
+
+for file in $(cat /tmp/filelist); do
+echo "File "$file" proccesing by Cuneiform for Linux"
+./cuneiform -l $VAR_01 /home/$USERNAME/qocr/$VAR_01/$file
+cat /usr/share/cuneiform/qocr/cuneiform-out.txt >> /home/"$USERNAME"/qocr/txt/$shortname
+rm /usr/share/cuneiform/qocr/cuneiform-out.txt  
+echo '-------------------------------------------------------------'
+echo
+done
+
+echo '-------------------------------------------------------------'
+echo '-------------------------------------------------------------'
+echo "OCR is done! Check *.txt files in /home/"$USERNAME"/qocr/txt/"
+echo "All OCR text files saved to file:                       "
+echo "/home/"$USERNAME"/qocr/txt/"$shortname"             "
+echo '-------------------------------------------------------------'
+
+} 
+f1 "${VAR_01}"

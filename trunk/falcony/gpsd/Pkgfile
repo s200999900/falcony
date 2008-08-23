@@ -1,0 +1,17 @@
+# Description: gpsd is a service daemon that monitors one or more GPSes
+# URL: http://gpsd.berlios.de/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: Python
+
+name=gpsd
+version=2.37
+release=1
+source=(http://download.berlios.de/$name/$name-$version.tar.gz)
+
+build () {
+	cd $name-$version
+        ./configure --prefix=/usr
+	make
+	make prefix=$PKG/usr install
+	chown -R root:root $PKG
+}

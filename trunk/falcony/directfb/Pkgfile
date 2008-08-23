@@ -1,0 +1,24 @@
+# Description: Graphics library for the Linux framebuffer device
+# URL: http://www.directfb.org
+# Packager: Falcony, falcony at users dot sourceforge dot net
+
+name=directfb
+version=1.2.0-rc1
+release=1
+source=(http://www.directfb.org/downloads/Core/DirectFB-$version.tar.gz)
+
+build() {
+	local EXTRA_ARGS
+
+	# uncomment the following line to build with support for the multi
+	# app core:
+	# EXTRA_ARGS="--enable-multi"
+
+	cd DirectFB-$version
+
+	./configure --prefix=/usr --mandir=/usr/man \
+	            --enable-zlib $EXTRA_ARGS
+
+	make
+	make DESTDIR=$PKG install
+}
