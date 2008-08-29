@@ -1,0 +1,26 @@
+# Description: Dump/Restore ext2/ext3
+# URL: http://sourceforge.net/projects/dump/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+
+name=dump
+version=0.4b41
+release=1
+source=(http://garr.dl.sourceforge.net/sourceforge/dump/dump-0.4b41.tar.gz \
+http://downloads.sourceforge.net/dump/dump-diff-0.4b40-0.4b41.gz )
+
+build() {
+	cd $name-$version
+	./configure --prefix=/usr --sysconfdir=/etc --with-binowner=root \
+        --enable-static --with-bingroup=root --with-manowner=root --with-mangroup=root
+	make
+      mkdir -p $PKG/etc/dumpdates 
+      install -D -m 0755 dump/dump $PKG/usr/sbin/dump
+      install -D -m 0644 dump/dump.8 $PKG/usr/man/man8/dump.8
+      install -D -m 0755 restore/restore $PKG/usr/sbin/restore
+      install -D -m 0644 restore/restore.8 $PKG/usr/man/man8/restore.8
+      install -D -m 0755 rmt/rmt $PKG/usr/sbin/rmt
+      install -D -m 0644 rmt/rmt.8 $PKG/usr/man/man8/rmt.8
+        
+}
+
+# vi:ts=4
