@@ -1,0 +1,25 @@
+# Description: Word processing program using GTK+2.0
+# URL: http://www.abisource.com
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: aspell, fribidi, libgnomeprintui, enchant, wv, perl5, libxml2
+
+name=abiword
+version=2.6.4
+release=1
+source=(http://www.abisource.com/downloads/abiword/$version/source/abiword-$version.tar.gz)
+
+build ()
+{
+    cd $name-$version
+    ./configure \
+	--prefix=/usr \
+        --with-libxml2 \
+        --enable-extra-optimization \
+	--with-aspell=yes \
+        --with-perl=yes \
+        --enable-printing \
+        --enable-threads \
+        --enable-scripting
+        make
+    make DESTDIR=$PKG install
+}

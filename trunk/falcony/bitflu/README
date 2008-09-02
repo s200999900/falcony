@@ -1,0 +1,46 @@
+# Very tiny README for Bitflu BitTorrent client
+
+Bitflu is a free BitTorrent client. The client was written in Perl and
+is designed to run as a daemon (7x24h , like mlnet) on Linux, *BSD and
+maybe even OSX.
+* Multiple downloads
+* Designed to run as a daemon/No GUI: You can connect to the client
+  using the telnet or HTTP interface
+* Security: The client can chroot itself and drop privileges
+* Bandwith shaping (currently only upload)
+* Crash-Proof design: Crashes or a full filesystem will never corrupt
+  your downloads again :-)
+* Non-Threading/(almost)Non-Forking design: All connections are handled
+  in non-blocking state using a dynamic select loop
+
+INSTALLATION
+
+1. Install p5-Digest-SHA1 and p5-URI modules via CPAN.
+
+perl -MCPAN -e shell
+install p5-Digest-SHA1
+install p5-URI
+
+2. Install package bitflu;
+
+3. Check /usr/share/bitflue/bitflu.config configuration file; 
+
+4. Type as root: 
+
+bitflu
+
+5.Default installation it is chrooted, telnet connections acceped on localhost:4001 and HTTP-connection also localhost at port 4081;
+
+6. Place your .torrent files to /usr/share/bitflue/autoload. They will load automatically to bitflu.
+
+7. All finished downloads will be located in /usr/share/bitflu/workdir/committed
+
+8. To start it as daemon - use screen utility.   
+
+screen bitflu
+ 
+9. That's all!
+
+WWW: http://bitflu.workaround.ch/
+Author: Adrian Ulrich <adrian@blinkenlights.ch>
+

@@ -1,0 +1,17 @@
+# Description: Russian Calendar application built upon Mozilla Toolkit.
+# URL: http://www.mozilla.org/projects/calendar/sunbird/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: gtk
+
+name=sunbird
+version=0.8
+release=1
+source=(http://ftp.twaren.net/Unix/Mozilla/calendar/sunbird/releases/$version/linux-i686/ru/$name-$version.ru.linux-i686.tar.gz)
+
+
+build() {
+  install -d $PKG/usr/{lib,bin}
+  rm $SRC/$name/{README.txt,LICENSE}
+  mv $SRC/$name $PKG/usr/lib
+  ln -s /usr/lib/$name/$name $PKG/usr/bin/$name
+}

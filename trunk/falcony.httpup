@@ -1,0 +1,8 @@
+#
+# /etc/ports/falcony.httpup: Maxim Falcony port collection
+#
+
+ROOT_DIR=/usr/ports/falcony
+URL=http://falcony.googlecode.com/svn/trunk/falcony/
+
+# End of file
