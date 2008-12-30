@@ -1,0 +1,16 @@
+# Description: FnFX enables on Toshiba laptops Fn-x combinations hot-keys
+# URL: http://fnfx.sourceforge.net/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+
+name=fnfx
+version=0.3
+release=1
+source=(http://downloads.sourceforge.net/fnfx/fnfx-0.3.tar.gz)
+
+build () {
+	cd fnfx-$version
+        ./configure  --prefix=/usr --sysconfdir=/etc --mandir=/usr/man
+	make
+	make prefix=$PKG/usr install
+	chown -R root:root $PKG
+}

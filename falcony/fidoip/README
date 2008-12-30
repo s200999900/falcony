@@ -1,0 +1,36 @@
+
+
+fidoip installation for CRUX Linux
+
+1. Install fidoip port:
+
+cd /usr/ports/falcony/fidoip ; pkgmk -d -i ; pkgmk -c
+
+2. Download fidoip-last_version.tar from http://sourceforge.net/projects/fidoip/
+
+3. Read documentation on http://fidoip.wiki.sourceforge.net/
+
+4. tar -xzpf fidoip-last_version.tar
+
+cd fidoip-last_version
+
+su
+
+run script relinkapps.sh to reling application and libraries:
+
+./relinkapps.sh 
+
+Setup configuration for youself:
+ 
+./setup_config.bash
+
+Setup permission for your_self:
+
+./set_perm.sh your_login
+
+Using your login name run recv script to recieve fido messages, ge, gl or g script to start GoldED+ editor.
+Send them messaged by send script.
+
+For more detail check http://fidoip.wiki.sourceforge.net/
+
+        
