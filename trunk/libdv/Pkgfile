@@ -1,0 +1,26 @@
+# $Id: $
+# Description: Quasar DV Codec (libdv) is a software decoder for DV format 
+# video, as defined by the IEC 61834 and SMPTE 314M standards. DV is the 
+# encoding format used by consumer-grade digital camcorders.
+# URL: http://sourceforge.net/projects/libdv/
+# Maintainer:
+# Packager: falcony, falcony at users dot sourceforge not net
+# Depends on: cvs
+
+name=libdv
+version=cvs
+release=1
+
+build() {
+	cd $PKGMK_SOURCE_DIR
+        rm -rf $name 
+	cvs -z3 -d:pserver:anonymous@$name.cvs.sourceforge.net:/cvsroot/$name co $name
+	cp -r $PKGMK_SOURCE_DIR/$name $SRC
+	cd $SRC/$name
+        ./bootstrap
+        ./configure --prefix=/usr
+        make
+        make DESTDIR=$PKG install
+
+}
+

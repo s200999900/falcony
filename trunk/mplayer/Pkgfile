@@ -1,0 +1,66 @@
+# $Id: $
+# Description: Media player
+# URL: http://www.mplayerhq.hu/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: x11, gtk, libsdl, mplayer-all-codecs, libsndfile, id3lib, faad2, faac, liba52, libjpeg, libpng, lame, zlib, libogg, libvorbis, cdparanoia, livemedia, fribidi, xmms, libcaca, aalib
+
+name=mplayer
+version=svn
+release=4
+source=(http://www.mplayerhq.hu/MPlayer/releases/fonts/font-arial-iso-8859-1.tar.bz2 mplayer-1.0_rc2_p27725-libx264.patch  \
+	mplayer.conf)
+
+build() {
+    cd $PKGMK_SOURCE_DIR
+    if cd mplayer 2>/dev/null ; then
+      svn up
+    else
+      svn checkout svn://svn.mplayerhq.hu/mplayer/trunk mplayer
+    fi
+
+    cp -r $PKGMK_SOURCE_DIR/mplayer $SRC
+    cd $SRC/$name
+
+    patch -p 1 < $SRC/${source[1]}
+
+    # If you want to use mplayer's optimizations comment out the
+    # next line:
+    unset CFLAGS CXXFLAGS
+
+    # stupid warnings
+    sed -i 's|-W -Wall| |' configure
+
+	./configure --prefix=/usr \
+                    --confdir=/  \
+                    --mandir=/usr/man \
+		    --enable-fribidi \
+		    --enable-menu \
+        	    --enable-gui \
+	            --enable-sdl \
+                    --enable-runtime-cpudetection \
+        	    --enable-dynamic-plugins \
+        	    --enable-real \
+        	    --enable-largefiles \
+        	    --enable-linux-devfs \
+        	    --enable-freetype \
+        	    --codecsdir=/usr/local/lib/codecs/ \
+                    --disable-ivtv \
+                    --with-dvdnav-config=/usr/bin/ \
+                    --language="en nl fr de es ru"
+
+	make
+	make DESTDIR=$PKG install
+
+	# replace copy of identical manpage with a symlink
+	(cd $PKG/usr/man/man1; rm mencoder.1; ln -s mplayer.1.gz mencoder.1.gz)
+        cd $SRC/$name
+        mkdir -p $PKG/etc        
+        install etc/input.conf   $PKG/etc/input.conf
+        install $SRC/mplayer.conf $PKG/etc/mplayer.conf
+	# fonts
+        install -d $PKG/usr/share/mplayer/font/
+         cp -r $SRC/font-arial-iso-8859-1/font-arial-??-iso-8859-1 $PKG/usr/share/mplayer/font/
+        cd $PKG/usr/share/mplayer/font
+        ln -s font-arial-14-iso-8859-1/* .
+	chown -R root:root $PKG
+}

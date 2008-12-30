@@ -1,0 +1,25 @@
+# Description: Cuneiform for Linux is an multi-language OCR system
+# URL: https://launchpad.net/cuneiform-linux
+# Maintainer: Falcony, falcony at users dot sourceforge dot net
+# Packager: Falcony, falcony at users dot sourceforge dot net	
+# Depends on: 
+# Nice to have: ImageMagick++ to recognize not only *.bmp files but other images
+
+name=cuneiform
+version=0.5
+release=1
+source=(http://launchpad.net/cuneiform-linux/$version/$version/+download/$name-$version.tar.bz2 \
+        qocr README README.RUS)
+
+build() {
+
+        cd $name-$version.0
+        mkdir cuneiform ; cd cuneiform        
+        cmake -DCMAKE_INSTALL_PREFIX=/usr .. ; make
+        make DESTDIR=$PKG install
+        install -m0755 $SRC/qocr $PKG/usr/bin
+        mkdir -p $PKG/usr/doc
+        mkdir -p $PKG/usr/doc/$name
+        cp $SRC/README.RUS $PKG/usr/doc/$name
+       cp $SRC/README $PKG/usr/doc/$name
+}

@@ -1,0 +1,18 @@
+# Description: This library can also be used by MPlayer/MEncoder to 
+# watch/re-encode tivo streams live over a network. 
+# URL: http://armory.nicewarrior.org/projects/vstream-client
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: glibc
+
+name=vstream-client
+version=1.2
+release=1
+source=(http://download.nicewarrior.org/vstream-client/vstream-client-$version.tar.gz)
+
+build () {
+	cd $name-$version
+        ./configure  --prefix=/usr
+	make
+	make prefix=$PKG/usr install
+	chown -R root:root $PKG
+}
