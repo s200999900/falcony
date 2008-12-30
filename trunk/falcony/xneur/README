@@ -1,0 +1,13 @@
+# Very small README for xneur keyboard auto-switcher 
+
+1. Read documentation at http://dists.xneur.ru/
+
+2. Check /etc/xneur/xneurrc configuration file. 
+Now activated English/Russian auto-switch only for next applications: 
+Abiword, Gnumeric, Firefox, Thunderbird, Licq. In other app. auto-switch 
+keyboard are disable. Sounds are also disabled. For undo chacking of inputted 
+words use Break.
+
+3. Add /usr/bin/xneur to startup with your WM.
+
+4. That's all.

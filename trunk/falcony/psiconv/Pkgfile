@@ -1,0 +1,19 @@
+# Description: Psiconv is a file conversion utility that converts between Psion 5(MX) files and Linux files format
+# URL: http://software.frodo.looijaard.name/psiconv/
+# Packager: Falcony, falcony at users dot sourceforge dot net
+# Depends on: 
+
+name=psiconv
+version=0.9.8
+release=1
+source=http://freshmeat.net/redir/$name/8426/url_tgz/$name-$version.tar.gz
+
+build () {
+	cd $name-$version        
+        ./configure \
+                --prefix=/usr --sysconfdir=/etc
+        make
+        make prefix=$PKG/usr install
+
+	chown -R root:root $PKG
+}

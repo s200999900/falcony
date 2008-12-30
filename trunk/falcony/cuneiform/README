@@ -1,0 +1,46 @@
+1. If ImageMagick is not installed then install it. After that install ?Cuneiform port.
+
+2. After package installation login as ordinary user and run script ocr:
+
+qocr rus
+
+It will create in your home directory qocr directory and next subdirectories for each language:
+
+ls /home/your_login/qocr
+
+bul  dan  dut  est  ger  ita  lav  pol	rum  ruseng  spa  swe  txt  uzb
+cze  dig  eng  fra  hun  kaz  lit  por	rus  slo     srp  tur  ukr
+
+The "txt" subdirectory is used as output directory for recognized OCR text. 
+ 
+3. Prepare images - Scan images it with 400 DPI and open each in GIMP. 
+Rotate them vertically, cut on blocks and frames save each in separate file. 
+Then add Brightness/Contrast to clean of dirty dots and old paper greyness for each  block. 
+Save all images. If ImageMagick is not installed the Cuneiform could recognize only *.bmp images. 
+
+4. Place all images to directory with appropriate lang. For example if you have russian lang. images then copy them to ~/qocr/rus directory, and if you have english lang. images then copy them to ~/qocr/eng directory. If you have mixed mostly Cyrillic ans less English scanned imaged place them to the ~/qocr/ruseng directory. 
+
+5. Then run ocr script with parameter of lang. to OCR text.
+
+qocr lang
+
+For example, if you copy images to ~/qocr/rus directory then run 
+
+qocr rus
+
+And If if you have english lang. images in  ~/qocr/eng then run:
+
+qocr eng
+
+If while recognition you will see next errors:
+
+Assertion failed: 0 file /usr/share/cuneiform/cuneiform_src/Kern/lns32/src/sbambuk.cpp, line 343
+
+Press <Space> to continue execution, <Esc> to abort
+
+Then simply press "Space" and then "ENTER".
+ 
+6. When OCR finished open in ~/ocr/txt/ text file text-packet-*.txt
+and check it by spellchecker program. Delete all images.
+
+7. That's all!
