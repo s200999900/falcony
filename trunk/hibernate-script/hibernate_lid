@@ -1,2 +1,0 @@
-event=button/lid
-action=/etc/acpi/hibernate_lid.sh
